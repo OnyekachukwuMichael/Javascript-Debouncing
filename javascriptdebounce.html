@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <h2>Javascript Debouncing</h2>
+  <div id="demo"> </div>
+  <button id="button">Debounce</button>
+  
+  <script>
+    let demo = document.getElementById("demo");
+    
+    let btn = document.getElementById("button");
+    
+    btn.addEventListener("click", debounce(function(){
+      demo.innerHTML = "Hello " + new Date().toLocaleTimeString();
+    }, 2000));
+    
+    function debounce(func, wait){
+      var timeout;
+      
+      return function(){
+        var context = this,
+        args = arguments;
+        
+        clearTimeout(timeout);
+        
+        setTimeout(function(){
+          func.apply(context, args)
+        }, wait)
+      }
+    }
+    
+  </script>
+</body>
+</html>
